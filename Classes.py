@@ -9,27 +9,30 @@ def verifica_float(var):
 
 class Punto:
     def __init__(self,x,y,z):
-        self.x=(verifica_float(x) and float(x)) or ("errore input X")
-        self.y=(verifica_float(y) and float(y)) or ("errore input Y")
-        self.z=(verifica_float(z) and float(z)) or ("errore input Z")
-        def imposta_errore():
-            a=verifica_float(x) or "errore input X "
-            b=verifica_float(y) or "errore input Y "
-            c=verifica_float(z) or "errore input Z "
-            return a+b+c
-        def imposta_proprietà(switch):
-            self.p='{},{},{}'.format(   self.x,
-                                        self.y,
-                                        self.z)
-            self.pF='{},{},{}'.format(  ((verifica_float(x) and round(self.x,3)) or self.x),
-                                        ((verifica_float(y) and round(self.y,3)) or self.y),
-                                        ((verifica_float(z) and round(self.z,3)) or self.z)
-                                        )
+        def errore_trigger():
+            return not(
+                    verifica_float(x)
+                and verifica_float(y)
+                and verifica_float(z)
+            ) or False
 
-        (   
-                imposta_proprietà(True)
-        )
+        def errore_stringa():
+            return (
+                  (( verifica_float(x) and (" ")) or ("errX "))
+                + (( verifica_float(y) and (" ")) or ("errY "))
+                + (( verifica_float(z) and (" ")) or ("errZ "))
+                )
 
+        self.x=errore_trigger() and errore_stringa() or float(x)
+        self.y=errore_trigger() and errore_stringa() or float(y)
+        self.z=errore_trigger() and errore_stringa() or float(z)
+        self.p='{},{},{}'.format(   self.x,
+                                    self.y,
+                                    self.z)
+        self.pF='{},{},{}'.format(  errore_trigger() and errore_stringa() or round(self.x,3),
+                                    errore_trigger() and errore_stringa() or round(self.y,3),
+                                    errore_trigger() and errore_stringa() or round(self.z,3)
+                                    )
         
 
 class Angolo:
@@ -56,6 +59,5 @@ class Angolo:
             and imposta_proprietà()
         )
 
-
-pippo=Punto("1a",0.25,"1")
+pippo=Punto(1/3,0.25,"1a")
 print(pippo.p)
