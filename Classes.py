@@ -14,4 +14,4 @@ class Punto:
 
 
 pippo=Punto(1/3,1,0.5)
-print(pippo.puntoF)
+print(pippo.punto)
