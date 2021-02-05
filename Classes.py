@@ -19,12 +19,12 @@ class Punto:
             self.pF='{},{},{}'.format(  round(self.x,3),
                                         round(self.y,3),
                                         round(self.z,3))
-            return True
 
-        self.valido=(       verifica_float(x)
-                        and verifica_float(y)
-                        and verifica_float(z)
-                        and imposta_proprietà())
+        (       verifica_float(x) 
+            and verifica_float(y)
+            and verifica_float(z)
+            and imposta_proprietà()
+        )
 
 class Angolo:
     def __init__(self,angolo,tipo):
@@ -44,12 +44,11 @@ class Angolo:
                             or 
                             (tipo=="rad" and float(angolo)/ma.pi*180 )
                         )
-            return True
 
-        self.valido = ( (  tipo=="deg" or tipo=="rad" )
-                        and verifica_float(angolo)
-                        and imposta_proprietà()
-                      )
+        (   (   tipo=="deg" or tipo=="rad" )
+            and verifica_float(angolo)
+            and imposta_proprietà()
+        )
 
-pippo=Punto(1/3,0.25,"1")
-print(pippo.p)
+pippo=Punto(1/3,0.25,"a1")
+print(pippo)
