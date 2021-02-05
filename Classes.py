@@ -18,10 +18,14 @@ def controllo_float(val):
     except OverflowError:
         return "risultato oltre i limiti calcolabili"
 
+def isfloat(val):
+    return str(controllo_float(val)).isnumeric()
+
+print(isfloat("5/g3"))
+
 def verifica_float(val):
     return controllo_float(val)
 
-print (verifica_float("5**5+t"))
 
 class Punto:
     def __init__(self,x,y,z):
@@ -60,10 +64,3 @@ class Angolo:
             and verifica_float(angolo)
             and imposta_proprietà()
         )
-
-pippo=Punto(1/3,0.25,1+6)
-print(pippo.x)
-print(pippo.y)
-print(pippo.z)
-print(pippo.p)
-print(pippo.pF)
