@@ -9,22 +9,28 @@ def verifica_float(var):
 
 class Punto:
     def __init__(self,x,y,z):
-        def imposta_proprietà():
-            self.x=float(x)
-            self.y=float(y)
-            self.z=float(z)
+        self.x=(verifica_float(x) and float(x)) or ("errore input X")
+        self.y=(verifica_float(y) and float(y)) or ("errore input Y")
+        self.z=(verifica_float(z) and float(z)) or ("errore input Z")
+        def imposta_errore():
+            a=verifica_float(x) or "errore input X "
+            b=verifica_float(y) or "errore input Y "
+            c=verifica_float(z) or "errore input Z "
+            return a+b+c
+        def imposta_proprietà(switch):
             self.p='{},{},{}'.format(   self.x,
                                         self.y,
                                         self.z)
-            self.pF='{},{},{}'.format(  round(self.x,3),
-                                        round(self.y,3),
-                                        round(self.z,3))
+            self.pF='{},{},{}'.format(  ((verifica_float(x) and round(self.x,3)) or self.x),
+                                        ((verifica_float(y) and round(self.y,3)) or self.y),
+                                        ((verifica_float(z) and round(self.z,3)) or self.z)
+                                        )
 
-        (       verifica_float(x) 
-            and verifica_float(y)
-            and verifica_float(z)
-            and imposta_proprietà()
+        (   
+                imposta_proprietà(True)
         )
+
+        
 
 class Angolo:
     def __init__(self,angolo,tipo):
@@ -50,5 +56,6 @@ class Angolo:
             and imposta_proprietà()
         )
 
-pippo=Punto(1/3,0.25,"a1")
-print(pippo)
+
+pippo=Punto("1a",0.25,"1")
+print(pippo.p)
