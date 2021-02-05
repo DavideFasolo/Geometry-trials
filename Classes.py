@@ -1,5 +1,12 @@
 import math as ma
 
+def verificatipo(var):
+    try:
+        float(var)
+        return True
+    except ValueError:
+        return False
+
 class Punto:
     def __init__(self,x,y,z):
         self.x=float(x)
@@ -10,11 +17,33 @@ class Punto:
                                     self.z)
         self.puntoF='{},{},{}'.format(round(self.x,3),
                                       round(self.y,3),
-                                      round(self.z),3)
+                                      round(self.z,3))
 
 class Angolo:
     def __init__(self,angolo,tipo):
-        self.rad=(tipo=="rad" and angolo or tipo=="deg" and angolo*ma.pi/180)
 
-pippo=Punto(1/3,1,0.5)
-print(pippo.punto)
+        self.valido =   (
+                        (  tipo=="deg" or tipo=="rad" )
+                        and
+                        verificatipo(angolo)
+                        and True
+                        )
+
+        self.rad =  (
+                        verificatipo(angolo) and self.valido
+                    ) and (
+                        (tipo=="rad" and float(angolo) )
+                        or 
+                        (tipo=="deg" and float(angolo)*ma.pi/180 )
+                    )
+
+        self.deg =  (
+                        verificatipo(angolo) and self.valido
+                    ) and (
+                        (tipo=="deg" and float(angolo) )
+                        or 
+                        (tipo=="rad" and float(angolo)/ma.pi*180 )
+                    )
+
+pippo=Angolo("1.0471975511965976","rad")
+print(pippo.deg)
