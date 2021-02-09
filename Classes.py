@@ -10,18 +10,20 @@ def controllo_float(val):
         parse_float(val)
         return parse_float(val)
     except ValueError:
+        print("errore di input coordinata punto")
         return "errore"
     except SyntaxError:
+        print("errore di sintassi coordinata punto")
         return "sintassi non valida"
     except NameError:
+        print("errore di sintassi coordinata punto")
         return "sintassi non valida (nome variabile?)"
     except OverflowError:
+        print("errore di overflow coordinata punto")
         return "risultato oltre i limiti calcolabili"
 
 def isfloat(val):
     return str(controllo_float(val)).isnumeric()
-
-print(isfloat("5/g3"))
 
 def verifica_float(val):
     return controllo_float(val)
@@ -29,7 +31,7 @@ def verifica_float(val):
 
 class Punto:
     def __init__(self,x,y,z):
-        self.x=x
+        self.x=isfloat(x) and parse_float(x)
         self.y=y
         self.z=z
         self.p='{},{},{}'.format(   self.x,
