@@ -32,8 +32,8 @@ def verifica_float(val):
 class Punto:
     def __init__(self,x,y,z):
         self.x=isfloat(x) and parse_float(x)
-        self.y=y
-        self.z=z
+        self.y=isfloat(y) and parse_float(y)
+        self.z=isfloat(z) and parse_float(z)
         self.p='{},{},{}'.format(   self.x,
                                     self.y,
                                     self.z)
